@@ -1,0 +1,16 @@
+# Power BI local/cache files
+*.pbix
+*.pbit
+*.tmp
+*.bak
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local exports and secrets
+.env
+*.log
+.DS_Store
