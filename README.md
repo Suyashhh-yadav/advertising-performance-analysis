@@ -148,7 +148,6 @@ The Power BI report includes KPI cards (spend, reported revenue, blended ROAS, z
 
 **Technical components:** Power Query transformations, a date table and relationship, DAX measures, slicers and conditional formatting. `analysis.py` independently recomputes the figures in this document.
 
-*(Screenshots of the dashboard built on this synthetic dataset can be added here.)*
 
 ## 9. Data disclosure
 
