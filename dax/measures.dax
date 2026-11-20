@@ -1,0 +1,57 @@
+/*
+  Example Power BI measures for the synthetic dataset.
+  Table name: Ad Performance
+  Calendar table: DateTable
+  Relationship: DateTable[Date] (1) -> 'Ad Performance'[Date] (*)
+*/
+
+Total Spend =
+SUM ( 'Ad Performance'[Spend] )
+
+Reported Revenue =
+SUM ( 'Ad Performance'[Revenue] )
+
+Blended ROAS =
+DIVIDE ( [Reported Revenue], [Total Spend] )
+
+Spend Share =
+DIVIDE (
+    [Total Spend],
+    CALCULATE ( [Total Spend], REMOVEFILTERS ( 'Ad Performance'[Account] ) )
+)
+
+ROAS Status =
+VAR SpendValue = [Total Spend]
+VAR ROASValue = [Blended ROAS]
+RETURN
+    SWITCH (
+        TRUE (),
+        ISBLANK ( SpendValue ) || SpendValue = 0, "No Spend",
+        ISBLANK ( ROASValue ), "Not Available",
+        ROASValue > 1, "Above 1x",
+        ROASValue = 1, "At 1x",
+        "Below 1x"
+    )
+
+Zero Spend Days =
+COUNTROWS (
+    FILTER (
+        VALUES ( DateTable[Date] ),
+        CALCULATE ( [Total Spend] ) = 0
+    )
+)
+
+Total Budget =
+SUM ( 'Ad Performance'[Budget] )
+
+Pacing Variance =
+[Total Spend] - [Total Budget]
+
+Pacing % =
+DIVIDE ( [Total Spend], [Total Budget] )
+
+/*
+  In this synthetic dataset, Budget is defined at campaign-day grain.
+  For real data, confirm the budget grain before summing it. If a
+  monthly/account budget is repeated on fact rows, do not sum it.
+*/
