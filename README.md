@@ -2,7 +2,8 @@
 
 > A business case study in analyzing advertising performance, evaluating budget efficiency, identifying data-quality limitations, and translating findings into recommendations.
 
-**Tools:** Power BI · DAX · Power Query · Python (verification)
+**Tools:** Power BI · DAX · Power Query · Python
+
 **Focus:** Business analysis · Analytical judgment · Data quality · Decision support
 
 > **All data in this repository is synthetic.** The method follows a real-world advertising assessment I completed, but every number, date and account identifier here was invented. Nothing comes from any company's data, and nothing here should be read as a result achieved for a real business. See [Data disclosure](#9-data-disclosure).
